@@ -1,0 +1,8 @@
+type Query{
+    allHellos:[Hello]
+    oneHello:Hello
+    books(Author:String):[Book]
+    company:Company
+    booksByReleased(releasedInput: ReleaseHistoryInput!):[Book]
+    mobileApps(mobileAppFilter:MobileAppFilter):[MobileApp]
+}

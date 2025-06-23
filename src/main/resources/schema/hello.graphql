@@ -1,0 +1,4 @@
+type Hello{
+    test: String!
+    randomNumber: Int
+}

@@ -1,0 +1,10 @@
+type Company{
+    name:String!
+    industry:String!
+    address:CompanyAddress
+}
+
+type CompanyAddress{
+    city:String!
+    country:String!
+}
