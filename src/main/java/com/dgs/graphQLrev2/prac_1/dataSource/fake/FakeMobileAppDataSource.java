@@ -23,7 +23,7 @@ public class FakeMobileAppDataSource {
     @PostConstruct
     public void getMobileApp() {
         var addresses= new ArrayList<Address>();
-        for (int i = 0; i < ThreadLocalRandom.current().nextInt(0, 10); i++) {
+        for (int i = 0; i < 10; i++) {
 
             var author = Author.newBuilder()
                     .name(faker.app().author())
