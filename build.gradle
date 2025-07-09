@@ -1,54 +1,57 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.4.7'
-	id 'io.spring.dependency-management' version '1.1.7'
-	id 'com.netflix.dgs.codegen' version '7.0.3'
+    id 'java'
+    id 'org.springframework.boot' version '3.4.7'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'com.netflix.dgs.codegen' version '7.0.3'
 }
 
 group = 'com.dgs'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 ext {
-	set('netflixDgsVersion', "10.1.2")
+    set('netflixDgsVersion', "10.1.2")
 }
 
 dependencies {
-	implementation(platform('com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:6.0.0'))
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter'
-	implementation 'com.netflix.graphql.dgs:graphql-dgs-extended-scalars'
-	implementation 'com.netflix.graphql.dgs:graphql-dgs-pagination'
-	implementation("net.datafaker:datafaker:1.7.0")
-	implementation 'org.apache.commons:commons-lang3:3.12.0'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation(platform('com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:6.0.0'))
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter'
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-extended-scalars'
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-pagination'
+    implementation("net.datafaker:datafaker:1.7.0")
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 generateJava {
-	schemaPaths = ["${projectDir}/src/main/resources/schema"]
-	packageName = 'com.microservices.api_gateway.codegen'
-	generateClient = true
+    schemaPaths = ["${projectDir}/src/main/resources/schema"]
+    packageName = 'com.microservices.api_gateway.codegen'
+    generateClient = true
+    typeMapping = ["Date"          : "java.time.LocalDate",
+                   "NonNegativeInt": "java.lang.Integer",
+                   "Url"           : "java.net.URL"]
 }
 
 
 dependencyManagement {
-	imports {
-		mavenBom "com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:${netflixDgsVersion}"
-	}
+    imports {
+        mavenBom "com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:${netflixDgsVersion}"
+    }
 }
 
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
