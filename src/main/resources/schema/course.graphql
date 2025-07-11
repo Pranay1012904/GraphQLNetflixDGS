@@ -9,4 +9,5 @@ type Query{
     company:Company
     booksByReleased(releasedInput: ReleaseHistoryInput!):[Book]
     mobileApps(mobileAppFilter:MobileAppFilter):[MobileApp]
+    pets(petFilter:PetFilter):[Pet]
 }
