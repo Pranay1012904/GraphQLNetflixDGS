@@ -2,3 +2,9 @@ type Hello{
     test: String!
     randomNumber: Int
 }
+"""Mutation In GraphQL"""
+
+input HelloInput{
+    text:String
+    number:Int
+}
