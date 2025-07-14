@@ -26,6 +26,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter'
     implementation 'com.netflix.graphql.dgs:graphql-dgs-extended-scalars'
+   //implementation 'com.netflix.graphql.dgs:graphql-dgs-subscriptions-websockets-autoconfigure'
+    //--------------FOR GRAPHQLSUBSCRIPTION----------------------------------------------------
+    // https://mvnrepository.com/artifact/com.netflix.graphql.dgs/graphql-dgs-subscription-types
+    implementation("com.netflix.graphql.dgs:graphql-dgs-subscription-types:7.2.0")
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-subscriptions-websockets-autoconfigure:3.1.0'
+    //************************************************************************************************
     implementation 'com.netflix.graphql.dgs:graphql-dgs-pagination'
     implementation("net.datafaker:datafaker:1.7.0")
     implementation 'org.apache.commons:commons-lang3:3.12.0'
@@ -41,7 +47,8 @@ generateJava {
     generateClient = true
     typeMapping = ["Date"          : "java.time.LocalDate",
                    "NonNegativeInt": "java.lang.Integer",
-                   "Url"           : "java.net.URL"]
+                   "Url"           : "java.net.URL",
+                   "DateTime"      : "java.time.OffsetDateTime"]
 }
 
 
